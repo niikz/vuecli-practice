@@ -1,12 +1,13 @@
 <template>
   <h1>Memo APP</h1>
-  <ul>
+  <ul v-if="memos.length">
     <memo-list
       v-for="memo in memos"
       :key="memo.id"
       :memo="memo"
     ></memo-list>
   </ul>
+  <p v-else>メモがありません。</p>
   <button type="button" @click.prevent="newMemo">新規メモ</button>
   <form>
     <textarea type="text" ref="input" v-model="editText"></textarea>
