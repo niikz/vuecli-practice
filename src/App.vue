@@ -52,11 +52,16 @@ export default {
     },
     addMemo () {
       const memo = {
-        id: Number(Date.now()).toString(16),
+        id: this.edit === 0 ? Number(Date.now()).toString(16) : this.edit,
         text: this.editText
       }
       if (memo.text.length > 0) {
-        this.memos.push(memo)
+        if (this.edit === 0) {
+          this.memos.push(memo)
+        } else {
+          const index = this.memos.findIndex(memo => memo.id === this.edit)
+          this.memos.splice(index, 1, memo)
+        }
       }
       this.editText = ''
     }
