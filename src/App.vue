@@ -7,8 +7,9 @@
       :memo="memo"
     ></memo-list>
   </ul>
+  <button type="button" @click.prevent="newMemo">新規メモ</button>
   <form>
-    <textarea type="text" v-model="memo.text"></textarea>
+    <textarea type="text" ref="input" v-model="editText"></textarea>
     <button type="button" @click="addMemo">追加</button>
   </form>
 </template>
@@ -25,7 +26,8 @@ export default {
       memo: {
         id: '',
         text: ''
-      }
+      },
+      editText: ''
     }
   },
   created () {
@@ -36,15 +38,19 @@ export default {
     ]
   },
   methods: {
+    newMemo () {
+      this.$refs.input.focus()
+      this.editText = 'New Memo'
+    },
     addMemo () {
       const memo = {
         id: Number(Date.now()).toString(16),
-        text: this.memo.text
+        text: this.editText
       }
-      if (this.memo.text.length > 0) {
+      if (memo.text.length > 0) {
         this.memos.push(memo)
       }
-      this.memo.text = ''
+      this.editText = ''
     }
   }
 }
