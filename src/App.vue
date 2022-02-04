@@ -1,7 +1,7 @@
 <template>
   <h1>Memo APP</h1>
   <ul v-for="memo in memos" :key="memo.id">
-    <li>{{ memo.text }}</li>
+    <li>{{ memo.text.split('\n')[0] }}</li>
   </ul>
 </template>
 
