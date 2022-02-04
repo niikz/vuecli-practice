@@ -3,6 +3,10 @@
   <ul v-for="memo in memos" :key="memo.id">
     <li>{{ memo.text.split('\n')[0] }}</li>
   </ul>
+  <form>
+    <textarea type="text"></textarea>
+    <button type="button">追加</button>
+  </form>
 </template>
 
 <script>
