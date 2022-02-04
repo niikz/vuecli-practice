@@ -13,6 +13,7 @@
   <form>
     <textarea type="text" ref="input" v-model="editText"></textarea>
     <button type="button" @click="addMemo"><span v-if="edit === 0">追加</span><span v-else>更新</span></button>
+    <button type="button" @click="deleteMemo">削除</button>
   </form>
 </template>
 
@@ -64,6 +65,13 @@ export default {
           this.memos.splice(index, 1, memo)
         }
       }
+      this.editText = ''
+    },
+    deleteMemo () {
+      this.memos = this.memos.filter(memo => {
+        return this.edit !== memo.id
+      })
+      this.edit = 0
       this.editText = ''
     }
   }
