@@ -1,7 +1,11 @@
 <template>
   <h1>Memo APP</h1>
-  <ul v-for="memo in memos" :key="memo.id">
-    <li>{{ memo.text.split('\n')[0] }}</li>
+  <ul>
+    <memo-list
+      v-for="memo in memos"
+      :key="memo.id"
+      :memo="memo"
+    ></memo-list>
   </ul>
   <form>
     <textarea type="text" v-model="memo.text"></textarea>
@@ -10,8 +14,11 @@
 </template>
 
 <script>
+import MemoList from '@/components/MemoList'
+
 export default {
   name: 'App',
+  components: { MemoList },
   data () {
     return {
       memos: [],
