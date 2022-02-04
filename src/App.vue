@@ -72,20 +72,22 @@ export default {
       this.memos = this.memos.filter(memo => {
         return this.edit !== memo.id
       })
-      this.edit = 0
-      this.editText = ''
+      this.resetMemoData()
     },
     saveMemos () {
       const json = JSON.stringify(this.memos)
       localStorage.setItem('memo', json)
-      this.edit = 0
-      this.editText = ''
+      this.resetMemoData()
     },
     loadMemos () {
       const json = localStorage.getItem('memo')
       if (json != null) {
         this.memos = JSON.parse(json)
       }
+    },
+    resetMemoData () {
+      this.edit = 0
+      this.editText = ''
     }
   }
 }
