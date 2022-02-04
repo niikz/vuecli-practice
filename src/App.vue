@@ -12,7 +12,7 @@
   <button type="button" @click.prevent="newMemo">新規メモ</button>
   <form>
     <textarea type="text" ref="input" v-model="editText"></textarea>
-    <button type="button" @click="addMemo">追加</button>
+    <button type="button" @click="addMemo"><span v-if="edit === 0">追加</span><span v-else>更新</span></button>
   </form>
 </template>
 
