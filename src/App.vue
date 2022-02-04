@@ -4,8 +4,8 @@
     <li>{{ memo.text.split('\n')[0] }}</li>
   </ul>
   <form>
-    <textarea type="text"></textarea>
-    <button type="button">追加</button>
+    <textarea type="text" v-model="memo.text"></textarea>
+    <button type="button" @click="addMemo">追加</button>
   </form>
 </template>
 
@@ -27,6 +27,18 @@ export default {
       { id: 2, text: 'eat lunch' },
       { id: 3, text: 'play game' }
     ]
+  },
+  methods: {
+    addMemo () {
+      const memo = {
+        id: Number(Date.now()).toString(16),
+        text: this.memo.text
+      }
+      if (this.memo.text.length > 0) {
+        this.memos.push(memo)
+      }
+      this.memo.text = ''
+    }
   }
 }
 </script>
