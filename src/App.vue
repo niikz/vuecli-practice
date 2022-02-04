@@ -1,15 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Memo APP</h1>
+  <ul v-for="memo in memos" :key="memo.id">
+    <li>{{ memo.text }}</li>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      memos: [],
+      memo: {
+        id: '',
+        text: ''
+      }
+    }
+  },
+  created () {
+    this.memos = [
+      { id: 1, text: 'go to sleep\ntake a nap' },
+      { id: 2, text: 'eat lunch' },
+      { id: 3, text: 'play game' }
+    ]
   }
 }
 </script>
