@@ -65,12 +65,18 @@ export default {
           this.memos.splice(index, 1, memo)
         }
       }
-      this.editText = ''
+      this.saveMemos()
     },
     deleteMemo () {
       this.memos = this.memos.filter(memo => {
         return this.edit !== memo.id
       })
+      this.edit = 0
+      this.editText = ''
+    },
+    saveMemos () {
+      const json = JSON.stringify(this.memos)
+      localStorage.setItem('memo', json)
       this.edit = 0
       this.editText = ''
     }
