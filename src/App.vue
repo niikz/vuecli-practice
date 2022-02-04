@@ -5,6 +5,7 @@
       v-for="memo in memos"
       :key="memo.id"
       :memo="memo"
+      @edit-memo="editMemo(memo)"
     ></memo-list>
   </ul>
   <p v-else>メモがありません。</p>
@@ -28,6 +29,7 @@ export default {
         id: '',
         text: ''
       },
+      edit: 0,
       editText: ''
     }
   },
@@ -42,6 +44,11 @@ export default {
     newMemo () {
       this.$refs.input.focus()
       this.editText = 'New Memo'
+    },
+    editMemo (memo) {
+      this.$refs.input.focus()
+      this.edit = memo.id
+      this.editText = memo.text
     },
     addMemo () {
       const memo = {
