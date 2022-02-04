@@ -40,6 +40,7 @@ export default {
       { id: 2, text: 'eat lunch' },
       { id: 3, text: 'play game' }
     ]
+    this.loadMemos()
   },
   methods: {
     newMemo () {
@@ -79,6 +80,12 @@ export default {
       localStorage.setItem('memo', json)
       this.edit = 0
       this.editText = ''
+    },
+    loadMemos () {
+      const json = localStorage.getItem('memo')
+      if (json != null) {
+        this.memos = JSON.parse(json)
+      }
     }
   }
 }
