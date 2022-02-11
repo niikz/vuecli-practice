@@ -2,7 +2,7 @@
   <h1>Memo APP</h1>
   <div class="contents">
     <div class="memo_list">
-      <ul v-if="memos.length">
+      <ul v-if="existMemo">
         <memo-list
           v-for="memo in memos"
           :key="memo.id"
@@ -47,6 +47,11 @@ export default {
       { id: 3, text: 'play game' }
     ]
     this.loadMemos()
+  },
+  computed: {
+    existMemo () {
+      return this.memos.length > 0
+    }
   },
   methods: {
     newMemo () {
