@@ -55,8 +55,8 @@ export default {
   },
   methods: {
     newMemo () {
+      this.resetMemoData()
       this.$refs.input.focus()
-      this.selectedId = 0
       this.editText = 'New Memo'
     },
     editMemo (memo) {
