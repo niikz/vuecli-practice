@@ -93,6 +93,7 @@ export default {
       this.memos = this.memos.filter(memo => {
         return this.selectedId !== memo.id
       })
+      this.saveMemos()
       this.resetMemoData()
     },
     saveMemos () {
