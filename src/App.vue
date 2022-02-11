@@ -16,7 +16,8 @@
     <form>
       <textarea type="text" ref="input" v-model="editText"></textarea>
       <div class="button_contents">
-        <button class="button edit" type="button" @click="addMemo"><span v-if="createNewMemo">追加</span><span v-else>更新</span></button>
+        <button v-if="createNewMemo" class="button edit" type="button" @click="addMemo">追加</button>
+        <button v-else class="button edit" type="button" @click="updateMemo">更新</button>
         <button class="button delete" type="button" @click="deleteMemo">削除</button>
       </div>
     </form>
@@ -69,16 +70,22 @@ export default {
     },
     addMemo () {
       const memo = {
-        id: this.selectedId === 0 ? Number(Date.now()).toString(16) : this.selectedId,
+        id: Number(Date.now()).toString(16),
         text: this.editText
       }
       if (memo.text.length > 0) {
-        if (this.selectedId === 0) {
-          this.memos.push(memo)
-        } else {
-          const index = this.memos.findIndex(memo => memo.id === this.selectedId)
-          this.memos.splice(index, 1, memo)
-        }
+        this.memos.push(memo)
+      }
+      this.saveMemos()
+    },
+    updateMemo () {
+      const memo = {
+        id: this.selectedId,
+        text: this.editText
+      }
+      if (memo.text.length > 0) {
+        const index = this.memos.findIndex(memo => memo.id === this.selectedId)
+        this.memos.splice(index, 1, memo)
       }
       this.saveMemos()
     },
