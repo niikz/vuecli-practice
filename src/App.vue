@@ -16,7 +16,7 @@
     <form>
       <textarea type="text" ref="input" v-model="editText"></textarea>
       <div class="button_contents">
-        <button class="button edit" type="button" @click="addMemo"><span v-if="edit === 0">追加</span><span v-else>更新</span></button>
+        <button class="button edit" type="button" @click="addMemo"><span v-if="selectedId === 0">追加</span><span v-else>更新</span></button>
         <button class="button delete" type="button" @click="deleteMemo">削除</button>
       </div>
     </form>
@@ -36,7 +36,7 @@ export default {
         id: '',
         text: ''
       },
-      edit: 0,
+      selectedId: 0,
       editText: ''
     }
   },
@@ -56,24 +56,24 @@ export default {
   methods: {
     newMemo () {
       this.$refs.input.focus()
-      this.edit = 0
+      this.selectedId = 0
       this.editText = 'New Memo'
     },
     editMemo (memo) {
       this.$refs.input.focus()
-      this.edit = memo.id
+      this.selectedId = memo.id
       this.editText = memo.text
     },
     addMemo () {
       const memo = {
-        id: this.edit === 0 ? Number(Date.now()).toString(16) : this.edit,
+        id: this.selectedId === 0 ? Number(Date.now()).toString(16) : this.selectedId,
         text: this.editText
       }
       if (memo.text.length > 0) {
-        if (this.edit === 0) {
+        if (this.selectedId === 0) {
           this.memos.push(memo)
         } else {
-          const index = this.memos.findIndex(memo => memo.id === this.edit)
+          const index = this.memos.findIndex(memo => memo.id === this.selectedId)
           this.memos.splice(index, 1, memo)
         }
       }
@@ -81,7 +81,7 @@ export default {
     },
     deleteMemo () {
       this.memos = this.memos.filter(memo => {
-        return this.edit !== memo.id
+        return this.selectedId !== memo.id
       })
       this.resetMemoData()
     },
@@ -97,7 +97,7 @@ export default {
       }
     },
     resetMemoData () {
-      this.edit = 0
+      this.selectedId = 0
       this.editText = ''
     }
   }
