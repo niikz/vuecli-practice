@@ -1,5 +1,5 @@
 <template>
-  <li @click.prevent="$emit('edit-memo', memo)">
+  <li @click="$emit('edit-memo', memo)">
     {{ memoTitle }}
   </li>
 </template>

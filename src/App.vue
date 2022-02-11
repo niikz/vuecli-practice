@@ -11,7 +11,7 @@
         ></memo-list>
       </ul>
       <p v-else>メモがありません。</p>
-      <button class="button add" type="button" @click.prevent="newMemo">新規メモ</button>
+      <button class="button add" type="button" @click="newMemo">新規メモ</button>
     </div>
     <form>
       <textarea type="text" ref="input" v-model="editText"></textarea>
