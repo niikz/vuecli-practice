@@ -16,7 +16,7 @@
     <form>
       <textarea type="text" ref="input" v-model="editText"></textarea>
       <div class="button_contents">
-        <button v-if="createNewMemo" class="button edit" type="button" @click="addMemo">追加</button>
+        <button v-if="isNewMemo" class="button edit" type="button" @click="addMemo">追加</button>
         <button v-else class="button edit" type="button" @click="updateMemo">更新</button>
         <button class="button delete" type="button" @click="deleteMemo">削除</button>
       </div>
@@ -53,7 +53,7 @@ export default {
     existMemo () {
       return this.memos.length > 0
     },
-    createNewMemo () {
+    isNewMemo () {
       return this.selectedId === 0
     }
   },
